@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="ja" data-tone="night">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>haru luna | あなたの手は、誰かを癒す力になる。</title>
+    <meta
+      name="description"
+      content="haru lunaは、リンパケア講座・ボディケア・セラピスト育成・美容健康アドバイス・YOGA・地域活動を通して、誰かを癒す力を育てる活動です。"
+    />
+    <meta property="og:title" content="haru luna | あなたの手は、誰かを癒す力になる。" />
+    <meta property="og:description" content="月夜から、夜明けへ。大切な人を想う気持ちから始まる、セラピストという生き方。" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="./assets/og-logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0b1220" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/favicon-192.png" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="manifest" href="./site.webmanifest" />
+
+    <!--
+    ====================================================================
+    DIRECTION 宣言（詳細は DIRECTION.md）
+    ムード    : ワールド没入（テーマ準拠・夜→夜明け）/ プリセット5・型#14
+    テーマ語彙: 月 / 呼吸 / 手 / 満ちる / 夜明け（ローダー・HUD・誘導の3箇所で使用）
+    署名イーズ: cubic-bezier(.16,1,.3,1)  機能イーズ: cubic-bezier(.4,0,.2,1)
+    許可技    : リビール=行マスクせり上げ+フェードアップ / アクセント=星空+月が満ちるHUD / 応答=マグネティック
+    例外1つ  : ローダーの円描画進捗のみ linear
+    見せ場    : 章04 夜明け（PV動画が月の円窓から全画面へ）
+    ====================================================================
+    -->
+
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Zen+Kaku+Gothic+New:wght@400;500&family=Zen+Old+Mincho:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HealthAndBeautyBusiness",
+        "name": "haru luna",
+        "description": "リンパケア講座、ボディケア、セラピスト育成、美容健康アドバイス、YOGA、マルシェ・地域活動。",
+        "areaServed": "Japan"
+      }
+    </script>
+  </head>
+  <body>
+    <!-- 00 開幕：月＋深呼吸 -->
+    <div class="loader" data-loader aria-hidden="true">
+      <div class="loader-moon">
+        <span class="loader-glow" data-loader-glow></span>
+        <svg class="loader-ring" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="47" pathLength="1" data-loader-ring />
+        </svg>
+        <img class="loader-logo" src="./assets/logo-moon-light.png" alt="" data-loader-logo />
+      </div>
+      <p class="loader-breath">
+        <span data-breath-in>息を吸って</span>
+        <span data-breath-out>ゆっくり吐いて</span>
+      </p>
+      <p class="loader-sub">take a deep breath</p>
+      <button class="loader-skip" type="button" data-loader-skip>skip</button>
+    </div>
+
+    <canvas class="stars" data-stars aria-hidden="true"></canvas>
+
+    <!-- HUD：時刻と月齢（画面の縁のみ） -->
+    <div class="hud" data-hud aria-hidden="true">
+      <span class="hud-corner hud-corner--tl"></span>
+      <span class="hud-corner hud-corner--tr"></span>
+      <span class="hud-corner hud-corner--bl"></span>
+      <span class="hud-corner hud-corner--br"></span>
+      <div class="hud-clock">
+        <span class="hud-time" data-hud-time>02:00</span>
+        <span class="hud-label" data-hud-label>月夜 · Moonlight</span>
+      </div>
+      <div class="hud-moon">
+        <svg viewBox="0 0 40 40" class="moon-icon"><circle class="moon-base" cx="20" cy="20" r="15" /><path class="moon-lit" data-hud-moon d="" /></svg>
+        <span class="hud-fill">月が満ちる <b data-hud-pct>0</b>%</span>
+      </div>
+    </div>
+
+    <a class="skip-link" href="#main">本文へ移動</a>
+
+    <header class="site-header" data-header>
+      <a class="brand" href="#top" aria-label="haru luna トップへ">
+        <img class="brand-logo brand-logo--light" src="./assets/logo-moon-light.png" alt="" />
+        <img class="brand-logo brand-logo--ink" src="./assets/logo-moon-ink.png" alt="" />
+        <span>haru luna</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+        <span></span><span></span><span class="sr-only">メニュー</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="主要ナビゲーション" data-nav>
+        <a href="#story">物語</a>
+        <a href="#phases">軌跡</a>
+        <a href="#care">できること</a>
+        <a href="#voices">お客様の声</a>
+        <a href="#gallery">ギャラリー</a>
+        <a href="#items">商品</a>
+        <a class="nav-cta" href="#contact" data-magnetic>ご相談</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- 01 月夜：ヒーロー -->
+      <section class="sky sky--night hero" id="top" data-chapter data-tone="night" data-time="02:00" data-label="月夜 · Moonlight" aria-labelledby="hero-title">
+        <div class="hero-depth" aria-hidden="true">
+          <span class="hero-back" data-hero-back>haru luna</span>
+          <span class="hero-moon" data-hero-moon></span>
+        </div>
+        <div class="hero-inner">
+          <p class="eyebrow" data-hero-sub>Healing balance of mind and body</p>
+          <h1 class="hero-title" id="hero-title" data-hero-title>
+            <span class="line"><span>あなたの手は、</span></span>
+            <span class="line"><span>誰かを癒す</span></span>
+            <span class="line"><span>力になる。</span></span>
+          </h1>
+          <p class="hero-lead" data-hero-sub>
+            家族のために。自分のために。そして未来の仕事として。<br />
+            自然治癒力を引き出すリンパケアで、「人を癒す喜び」を届けています。
+          </p>
+          <div class="actions" data-hero-sub>
+            <a class="btn btn--primary" href="https://line.me/" target="_blank" rel="noreferrer" data-magnetic>
+              <span class="btn-badge">LINE</span>LINEで相談する
+            </a>
+            <a class="btn btn--ghost" href="https://www.instagram.com/haruluna_halna/" target="_blank" rel="noreferrer" data-magnetic>Instagramを見る</a>
+          </div>
+        </div>
+        <a class="scroll-lure" href="#story" data-hero-lure>
+          <span class="scroll-lure-line" aria-hidden="true"></span>
+          <span>息を吸って、夜明けへ</span>
+          <em>breathe in · scroll to dawn</em>
+        </a>
+      </section>
+
+      <!-- 02 呼吸：はるなの物語 -->
+      <section class="sky sky--moonlight story" id="story" data-chapter data-tone="night" data-time="03:00" data-label="呼吸 · Breathe" aria-labelledby="story-title">
+        <div class="wrap story-grid">
+          <figure class="story-photo" data-reveal>
+            <img src="./assets/profile-haruna.jpeg" alt="笑顔のはるなさんと、お子さん" loading="lazy" />
+            <figcaption>はるな ／ ルシェールインストラクター</figcaption>
+          </figure>
+          <div class="story-text">
+            <p class="chapter-no">Chapter 02 — <em>Breathe</em></p>
+            <p class="kicker" data-reveal>はじめまして、はるなです。</p>
+            <h2 class="h2" id="story-title" data-mask>
+              <span class="line"><span>人には本来、</span></span>
+              <span class="line"><span>自分で整う力がある。</span></span>
+            </h2>
+            <div class="prose" data-reveal-group>
+              <p data-reveal>私は7人の男の子と1人の女の子を育て、母となり、祖母となり、たくさんの人と関わる人生を歩んできました。</p>
+              <p data-reveal>ヨガ講師として。母子保健推進員として。地域活動を通して。そして今は、ルシェールインストラクターとしてリンパケアやセラピスト育成に携わっています。</p>
+              <p data-reveal>私が大切にしているのは「人には本来、自分で整う力がある」ということ。その力を引き出すお手伝いをしています。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="wrap confession">
+          <h3 class="confession-title" data-mask>
+            <span class="line"><span>私も最初から</span></span>
+            <span class="line"><span>自信があったわけでは</span></span>
+            <span class="line"><span>ありません。</span></span>
+          </h3>
+          <div class="confession-text" data-reveal-group>
+            <p data-reveal>新しいことを始める不安。場所がない。経験がない。本当に私にできるの？</p>
+            <p data-reveal>そんな気持ちは、私自身も経験してきました。だからこそ、これから一歩踏み出す人の気持ちがよく分かります。</p>
+            <p class="concept" data-reveal>サロンがなくてもいい。資格だけでもない。<br />大切な人を想う気持ちから始まる、<span class="accent-text">セラピストという生き方</span>を。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 満ちる：活動の軌跡 -->
+      <section class="sky sky--deep phases" id="phases" data-chapter data-tone="night" data-time="04:00" data-label="満ちる · Fill" aria-labelledby="phases-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="chapter-no">Chapter 03 — <em>Moon phases</em></p>
+            <h2 class="h2" id="phases-title" data-mask>
+              <span class="line"><span>ひとつずつ、満ちてきた。</span></span>
+            </h2>
+            <p class="section-lead" data-reveal>ヨガから始まった歩みは、地域と人をつなぎ、いまセラピストを育てる活動へ。</p>
+          </div>
+          <ol class="phase-list" data-reveal-group>
+            <li data-reveal><span class="phase-moon" data-phase="0.04"></span><time>2015</time><span>ヨガインストラクター</span></li>
+            <li data-reveal><span class="phase-moon" data-phase="0.18"></span><time>2017</time><span>東南植物楽園イベント<br />ラジオ出演</span></li>
+            <li data-reveal><span class="phase-moon" data-phase="0.32"></span><time>2018</time><span>チャリティYOGA開催</span></li>
+            <li data-reveal><span class="phase-moon" data-phase="0.5"></span><time>2019</time><span>うるみん担当</span></li>
+            <li data-reveal><span class="phase-moon" data-phase="0.66"></span><time>2022</time><span>母子保健推進員<br />ソマシーボディケアマスター取得</span></li>
+            <li data-reveal><span class="phase-moon" data-phase="0.82"></span><time>2024</time><span>マルシェ運営</span></li>
+            <li data-reveal><span class="phase-moon" data-phase="1"></span><time>2025</time><span>ルシェールインストラクター</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 04 夜明け：PV（見せ場） -->
+      <section class="dawn" id="dawn" data-chapter data-tone="night" data-time="05:00" data-label="夜明け · Dawn" data-hud-hide aria-labelledby="dawn-title">
+        <div class="dawn-stage" data-dawn-stage>
+          <p class="dawn-cap dawn-cap--l" data-dawn-cap><span>心に触れる時間。</span></p>
+          <p class="dawn-cap dawn-cap--r" data-dawn-cap><span>手から、ぬくもり。</span></p>
+          <h2 class="sr-only" id="dawn-title">夜明け — haru lunaの世界観を伝えるPV</h2>
+          <div class="dawn-window" data-dawn-window>
+            <video
+              data-dawn-video
+              src="./assets/haru-luna-hero-video.mp4"
+              poster="./assets/hero-video-poster.jpeg"
+              muted
+              loop
+              playsinline
+              preload="metadata"
+              aria-label="haru lunaの施術シーンを映したPV動画"
+            ></video>
+          </div>
+          <span class="dawn-ring" data-dawn-ring aria-hidden="true"></span>
+          <p class="dawn-hint" data-dawn-hint>夜明けへ — <em>Dawn</em></p>
+        </div>
+      </section>
+
+      <!-- 05 手：できること・届けたい未来 -->
+      <section class="sky sky--daybreak care" id="care" data-chapter data-tone="day" data-time="05:30" data-label="手 · Hands" aria-labelledby="care-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="chapter-no">Chapter 05 — <em>Hands</em></p>
+            <h2 class="h2" id="care-title" data-mask>
+              <span class="line"><span>haru lunaができること</span></span>
+            </h2>
+          </div>
+          <ol class="care-list" data-reveal-group>
+            <li data-reveal><div class="care-head"><span class="num">01</span><span class="care-icon" style="--icon: url(./assets/icon-course.png)" aria-hidden="true"></span></div><h3>リンパケア講座</h3><p>家族のケアからセラピストとして活動したい方まで。基礎から実践まで丁寧に学べます。</p></li>
+            <li data-reveal><div class="care-head"><span class="num">02</span><span class="care-icon" style="--icon: url(./assets/icon-bodycare.png)" aria-hidden="true"></span></div><h3>ボディケア・施術</h3><p>自然治癒力を引き出す心地よいリンパケア。一度受けると忘れられない施術を目指しています。</p></li>
+            <li data-reveal><div class="care-head"><span class="num">03</span><span class="care-icon" style="--icon: url(./assets/icon-therapist.png)" aria-hidden="true"></span></div><h3>セラピスト養成・フォロー</h3><p>資格取得だけで終わらない。活動までしっかりサポートします。</p></li>
+            <li data-reveal><div class="care-head"><span class="num">04</span><span class="care-icon" style="--icon: url(./assets/icon-advisor.png)" aria-hidden="true"></span></div><h3>美容健康アドバイザー</h3><p>身体の内側から整える美容と健康のご提案を行います。</p></li>
+            <li data-reveal><div class="care-head"><span class="num">05</span><span class="care-icon" style="--icon: url(./assets/icon-yoga.png)" aria-hidden="true"></span></div><h3>YOGA</h3><p>呼吸と身体を整え、心まで軽くなる時間を。</p></li>
+            <li data-reveal><div class="care-head"><span class="num">06</span><span class="care-icon" style="--icon: url(./assets/icon-marche.png)" aria-hidden="true"></span></div><h3>マルシェ・地域活動</h3><p>人と人をつなぐ場所づくりも、私の大切な活動です。</p></li>
+          </ol>
+        </div>
+
+        <div class="wrap future">
+          <div class="future-head">
+            <p class="chapter-no">Future</p>
+            <h2 class="h2" data-mask><span class="line"><span>私が届けたい未来</span></span></h2>
+            <p class="section-lead" data-reveal>「癒し」は特別な人だけのものではありません。</p>
+          </div>
+          <ul class="future-list" data-light-seq>
+            <li><span>01</span>家族を<br />笑顔にできる</li>
+            <li><span>02</span>大切な人を<br />ケアできる</li>
+            <li><span>03</span>サロンがなくても<br />活動できる</li>
+            <li><span>04</span>自信を持って<br />施術できる</li>
+            <li><span>05</span>好きなことを<br />仕事にできる</li>
+          </ul>
+          <p class="future-close" data-light-close>誰かを想う気持ちがあれば、その一歩は今日から始められます。</p>
+        </div>
+      </section>
+
+      <!-- 06 お客様の声 -->
+      <section class="sky sky--morning voices" id="voices" data-chapter data-tone="day" data-time="06:00" data-label="呼吸 · Breathe" aria-labelledby="voices-title">
+        <div class="wrap">
+          <div class="section-head">
+            <p class="chapter-no">Chapter 06 — <em>Voices</em></p>
+            <h2 class="h2" id="voices-title" data-mask><span class="line"><span>ふっと、軽くなった声。</span></span></h2>
+          </div>
+
+          <h3 class="voice-group" data-reveal>施術を受けたお客さま</h3>
+          <div class="voice-grid" data-reveal-group>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-t1.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>ありがとうございました！みんなに写真見せたら、あまりの変わりようにビックリされました！また来月も休み取り予約します。</p><cite>40代 会社員</cite></div></blockquote>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-t2.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>ビフォーアフター、みんな凄いビックリしていました。私もビックリ！笑　嬉しい変化でした♪</p><cite>40代 会社員</cite></div></blockquote>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-t3.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>施術後は足が軽かった！足が疲れてる感じがなかったです。靴も緩くなってました。</p><cite>50代 会社員</cite></div></blockquote>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-t4.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>施術後1週間→リンパの体感は体重が2キロ落ちてた！3日では戻ったけど（笑）体が軽くて、今も便通がいいかな！</p><cite>40代 会社員</cite></div></blockquote>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-t5.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>先日は施術ありがとうございました。あのスッキリ感、忘れられません。終わったときの視界の広さにたまげました！おうちでもアロマタッチしてるんですが、やっぱりハルナさんには、かないませぬ！</p><cite>50代 主婦</cite></div></blockquote>
+          </div>
+
+          <h3 class="voice-group" data-reveal>講座を受講した方</h3>
+          <div class="voice-grid" data-reveal-group>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-c1.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>ビフォーアフターの違いがすぐわかりすごかった。塗るだけで結果が出るのは、進めやすいと思った。早く家族にやってあげたい。</p><cite>40代 美容師</cite></div></blockquote>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-c2.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>リンパの流れ、体のしくみ、基礎知識など、わからないことがあったので楽しくて参加できました。将来性のある仕事にしたいと思った。</p><cite>50代 サービス業</cite></div></blockquote>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-c3.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>力を入れずに、リマシーを使っての短時間でこんなに変化がでるのにびっくりしました。家族にとり入れて、変化を楽しもうと思いました！そして、早くマスター講座も受けたいです。</p><cite>30代 会社員</cite></div></blockquote>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-c4.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>説明がわかりやすく、楽しく受けられて、家族にも早速やろうと思いました。ありがとうございました。</p><cite>60代</cite></div></blockquote>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-c5.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>とても良かったです。ソマシーの効果の高さがわかって勉強になりました。</p><cite>70代 主婦</cite></div></blockquote>
+            <blockquote class="voice" data-reveal><img class="voice-face" src="./assets/voice-c6.png" alt="" width="160" height="160" loading="lazy" /><div class="voice-bubble"><p>座学も分かり易く、実技も質問し易くてすごくラッキーでした。春奈先生とても良かったです！！ありがとうございました。</p><cite>40代 会社員</cite></div></blockquote>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 ギャラリー -->
+      <section class="sky sky--light gallery" id="gallery" data-chapter data-tone="day" data-time="06:10" data-label="夜明け · Dawn" data-hud-hide aria-labelledby="gallery-title">
+        <div class="wrap">
+          <div class="section-head section-head--row">
+            <div>
+              <p class="chapter-no">Chapter 07 — <em>Scenes of healing</em></p>
+              <h2 class="h2" id="gallery-title" data-mask><span class="line"><span>朝の光のなかで。</span></span></h2>
+            </div>
+            <p class="section-lead" data-reveal>施術、講座、マルシェ、仲間たち。<br />haru lunaの毎日の風景です。</p>
+          </div>
+          <ul class="gallery-grid" data-reveal-group data-gallery>
+            <li class="g-a" data-reveal><button type="button"><img src="./assets/gallery-08.jpeg" alt="リンパケア施術でお客さまの頭に触れるはるなさん" loading="lazy" /></button></li>
+            <li class="g-b" data-reveal><button type="button"><img src="./assets/gallery-02.jpeg" alt="ル・シェール東京青山で商品を持つ二人" loading="lazy" /></button></li>
+            <li class="g-c" data-reveal><button type="button"><img src="./assets/gallery-05.jpeg" alt="白いテントの中でのリンパケア施術" loading="lazy" /></button></li>
+            <li class="g-d" data-reveal><button type="button"><img src="./assets/gallery-04.jpeg" alt="マルシェ活動で笑顔の集合写真" loading="lazy" /></button></li>
+            <li class="g-e" data-reveal><button type="button"><img src="./assets/gallery-03.jpeg" alt="8児の母 haru luna。ヨガや施術活動のコラージュ" loading="lazy" /></button></li>
+            <li class="g-f" data-reveal><button type="button"><img src="./assets/gallery-10.jpeg" alt="ソマシーケアを紹介する施術風景" loading="lazy" /></button></li>
+            <li class="g-g" data-reveal><button type="button"><img src="./assets/gallery-06.jpeg" alt="活動仲間との集合写真" loading="lazy" /></button></li>
+            <li class="g-h" data-reveal><button type="button"><img src="./assets/gallery-11.jpeg" alt="40代からのリンパケア 告知ビジュアル" loading="lazy" /></button></li>
+            <li class="g-i" data-reveal><button type="button"><img src="./assets/gallery-07.jpeg" alt="リンパトリートメントのビフォーアフター紹介" loading="lazy" /></button></li>
+            <li class="g-j" data-reveal><button type="button"><img src="./assets/gallery-01.jpeg" alt="ル・シェールの場で仲間と撮影した写真" loading="lazy" /></button></li>
+            <li class="g-k" data-reveal><button type="button"><img src="./assets/gallery-09.jpeg" alt="横浜での活動と思い出のコラージュ" loading="lazy" /></button></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 08 商品 -->
+      <section class="sky sky--sun items" id="items" data-chapter data-tone="day" data-time="06:20" data-label="満ちる · Fill" aria-labelledby="items-title">
+        <div class="wrap">
+          <div class="section-head section-head--row">
+            <div>
+              <p class="chapter-no">Chapter 08 — <em>Recommendation</em></p>
+              <h2 class="h2" id="items-title" data-mask><span class="line"><span>内側から、満ちていく。</span></span></h2>
+            </div>
+            <div class="section-lead" data-reveal>
+              <p>ル・シェールの商品づくりのテーマは「美と健康」。開発・製造のコンセプトは「信頼」「安心」「実感」。毎日のケアや内側からの整え方に、お役立てください。</p>
+              <a class="text-link" href="https://lecher.co.jp/" target="_blank" rel="noreferrer">ル・シェールの詳細はこちら</a>
+            </div>
+          </div>
+          <ul class="item-list" data-reveal-group>
+            <li data-reveal>
+              <div class="item-img"><img src="./assets/product-happy-wave.png" alt="ル・シェール ハッピーウェーブ" loading="lazy" /></div>
+              <p class="item-en">Happy Wave</p>
+              <h3>ハッピーウェーブ</h3>
+              <p>総合栄養補給食品。置き換え・プラスで栄養サポート。</p>
+            </li>
+            <li data-reveal>
+              <div class="item-img"><img src="./assets/product-salacian-qute.png" alt="ル・シェール サラシアンキュート" loading="lazy" /></div>
+              <p class="item-en">Salacian Qute</p>
+              <h3>サラシアンキュート</h3>
+              <p>サラシアエキス配合の飲料茶。食べたい…でも太りたくない！</p>
+            </li>
+            <li data-reveal>
+              <div class="item-img"><img src="./assets/product-body-somacy.png" alt="ル・シェール ボディソマシー" loading="lazy" /></div>
+              <p class="item-en">Body Somacy</p>
+              <h3>ボディソマシー</h3>
+              <p>LPS配合ボディミルク。成分LPSがオールマイティにサポート。</p>
+            </li>
+            <li data-reveal>
+              <div class="item-img"><img src="./assets/product-oral-somacy.png" alt="ル・シェール オーラルソマシー" loading="lazy" /></div>
+              <p class="item-en">Oral Somacy</p>
+              <h3>オーラルソマシー</h3>
+              <p>LPS配合の口腔ケア。お口の健康は全身の健康につながります。</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 09 日の出：ご相談 -->
+      <section class="sky sky--sunrise contact" id="contact" data-chapter data-tone="day" data-time="06:30" data-label="夜明け · Sunrise" aria-labelledby="contact-title">
+        <div class="wrap">
+          <div class="section-head section-head--center">
+            <p class="chapter-no">Chapter 09 — <em>Contact</em></p>
+            <h2 class="h2" id="contact-title" data-mask><span class="line"><span>まずはお気軽に、ご相談ください。</span></span></h2>
+            <p class="section-lead" data-reveal>あなたに合った学び方や活動スタイルをご提案します。</p>
+          </div>
+          <ol class="flow" data-reveal-group>
+            <li data-reveal><span>01</span>LINE登録</li>
+            <li data-reveal><span>02</span>ご相談・質問</li>
+            <li data-reveal><span>03</span>日程調整</li>
+            <li class="flow-end" data-reveal><span>04</span>講座スタート<small>または</small>施術スタート</li>
+          </ol>
+          <p class="flow-note" data-reveal>商品購入の場合は、商品ページへご案内いたします。</p>
+        </div>
+
+        <div class="finale">
+          <span class="sun" aria-hidden="true" data-sun></span>
+          <h2 class="finale-title" data-mask>
+            <span class="line"><span>あなたの優しさは、</span></span>
+            <span class="line"><span>誰かを救う力になる。</span></span>
+          </h2>
+          <p class="finale-text" data-reveal>特別な才能より、誰かを想う気持ちを大切に。<br />そんな仲間が増えていく未来を、私は楽しみにしています。</p>
+          <div class="actions actions--center" data-reveal>
+            <a class="btn btn--primary" href="https://line.me/" target="_blank" rel="noreferrer" data-magnetic>
+              <span class="btn-badge">LINE</span>LINEで相談する
+            </a>
+            <a class="btn btn--ghost" href="https://www.instagram.com/haruluna_halna/" target="_blank" rel="noreferrer" data-magnetic>Instagramを見る</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <img src="./assets/logo-moon-ink.png" alt="haru luna ロゴ" width="96" height="96" loading="lazy" />
+      <p>take a deep breath.<br />Healing balance of mind and body.</p>
+      <small>© haru luna</small>
+    </footer>
+
+    <dialog class="lightbox" data-lightbox aria-label="ギャラリー拡大表示">
+      <img data-lightbox-img alt="" />
+      <p class="lightbox-cap" data-lightbox-cap></p>
+      <button class="lb-btn lb-close" type="button" data-lb-close aria-label="閉じる">×</button>
+      <button class="lb-btn lb-prev" type="button" data-lb-prev aria-label="前の写真">‹</button>
+      <button class="lb-btn lb-next" type="button" data-lb-next aria-label="次の写真">›</button>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
